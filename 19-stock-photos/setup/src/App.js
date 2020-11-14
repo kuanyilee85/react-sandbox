@@ -40,8 +40,8 @@ function App() {
 
       setLoading(false);
     } catch (error) {
-      setLoading(false);
       console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -67,7 +67,7 @@ function App() {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPage(1);
+    setPage(() => 1);
     fetchImages();
   };
   return (
@@ -77,9 +77,9 @@ function App() {
           <input
             type="text"
             placeholder="search"
-            className="form-input"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            className="form-input"
           />
           <button type="submit" className="submit-btn" onClick={handleSubmit}>
             <FaSearch />
@@ -89,7 +89,7 @@ function App() {
       <section className="photos">
         <div className="photos-center">
           {photos.map((image, index) => {
-            return <Photo key={image.id} {...image} />;
+            return <Photo key={index} {...image} />;
           })}
         </div>
         {loading && <h2 className="loading">Loading...</h2>}
